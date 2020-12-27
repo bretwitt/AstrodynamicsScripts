@@ -1,0 +1,13 @@
+
+r1 = [0.70711255 0 .41202];
+r2 = [1.81065659 1.96066883 -0.8];
+r3 = [0.9 0 0.5];
+
+
+[a,p,e,Q,W,P,v] = determineorbitgibbsian(r1,r2,r3);
+
+Q = norm(Q);
+W = norm(W);
+P = norm(P);
+v = norm(v);
+fprintf('a %.2f p %.2f e %.2f Q %.2f W %.2f P %.2f v1 %.2f \n', a,p,e,Q,W,P,v);
