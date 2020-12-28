@@ -41,8 +41,8 @@ ap = p / (1 + norm(e));
 peri = p / (1 - norm(e));
 
 % Print results
-fprintf('### Orbit Information ###\n');
-fprintf('+ KE (a %.2f ; e %.2f ; i %.2f ; RAAN %.2f ; AOP %.2f ; v0 %.2f)\n', a, norm(e), i, raan, aop, tae);
+fprintf('### Basic Orbit Data ###\n');
+fprintf('+ Keplerian Elements (a %.2f ; e %.2f ; i %.2f ; RAAN %.2f ; AOP %.2f ; v0 %.2f)\n', a, norm(e), i, raan, aop, tae);
 fprintf('+ ap %.2f peri %.2f\n', ap,peri);
 
 end

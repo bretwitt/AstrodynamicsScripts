@@ -1,0 +1,19 @@
+function [deltaV] = hohmanntransfer(r1, r2)
+
+%% Parking Orbit 
+vcs = sqrt(1 / r1);
+
+%% Calculate Transfer Ellipse
+
+% 
+a = (r1 + r2) / 2;
+e = -((r1 / a) - 1);
+p = a(1-e^2);
+
+Et = -1/(r1+r2);
+
+% Velocity of perigee of the transfer ellipse (whe
+v1 = sqrt(2(1/r1)+Et);
+
+end
+

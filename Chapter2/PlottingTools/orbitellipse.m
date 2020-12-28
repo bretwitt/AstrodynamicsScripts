@@ -1,4 +1,6 @@
-function orbitellipse(p, e, i) 
+function orbitellipse(p, e, i, color) 
+% p,e,i are all scalars
+
     axis equal
     hold on;
     sphere(30);
@@ -21,8 +23,7 @@ function orbitellipse(p, e, i)
     
     %% Plot
     plot = plot3(x,y,z);
-    xlim ([-2,2]);
-    ylim ([-2,2]);
-    zlim ([-2,2]);
-    set(plot,"Color",'r', "LineWidth", 2);
+    
+    set(plot,"Color",color, "LineWidth", 2);
+
 end

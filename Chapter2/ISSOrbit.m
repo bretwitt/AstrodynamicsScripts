@@ -1,4 +1,4 @@
-addpath OrbitDetermination
+addpath OrbitDetermination PlottingTools
 
 %% Script to test orbitdetermination function
 
@@ -14,4 +14,4 @@ v = [0.795986637698 -0.103850330044 -0.543736570272];
 e = norm(e);
 p = a*(1-e^2);
 
-plotorbit(p,e,i);
+plotorbit(p,e,i, 'g');

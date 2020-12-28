@@ -1,0 +1,19 @@
+addpath Manuevers PlottingTools OrbitDetermination
+
+% Regular circular orbit
+r = [0.0627, 0, 0];
+v = [0, 3.993, 0];
+
+% Determine some of their properties
+[a,e] = determineorbit(r,v);
+
+p = a(1-e^2);
+
+% Calculate Hohmann Transfer
+[deltaV, a1, e1, p1] = hohmanntransfer(norm(r), norm(r)*2);
+
+% Plot these orbits
+plotorbit(p,a,e,0);
+plotorbit(p1,a1,e1);
+
+fprintf("dV of Hohmann Transfer: %.2f",)

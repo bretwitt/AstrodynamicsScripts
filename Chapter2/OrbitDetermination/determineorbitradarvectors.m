@@ -1,3 +1,4 @@
+
 clear
 clc
 
@@ -57,17 +58,13 @@ v = ijkVel(:)' + earthAngularVelocity;
 
 % Solve Keplerian Elements 
 
-ke = determineorbit(r,v);
+[a,e,i,raan,aop,tae] = determineorbit(r,v);
 
-a = ke(1);
-e = ke(2);
-i = ke(3);
-raan = ke(4);
-aop = ke(5);
+e = norm(e);
 
 % Print results
 
-plotOrbit(a,norm(e),i);
+plotorbit(a,norm(e),i);
 
 fprintf('### Orbit Determination @ LST %.1f STN LOC %.1f LAT %.1f LONG\n### STN INIT (RNG %.1f EL. %.1f AZ. %.1f)', theta, Lat, Long, p, El, Az);
 fprintf('=> VEC %.2fS %f.2E %.2fZ\n', sezPosition(1),sezPosition(2),sezPosition(3));
