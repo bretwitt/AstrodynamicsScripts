@@ -9,5 +9,9 @@ addpath OrbitDetermination
 r = [0.292768687676 -0.838731022264 0.587159656632];
 v = [0.795986637698 -0.103850330044 -0.543736570272];
 
-elements = determineorbit(r,v);
-%plotorbit(elements(1),elements(2),elements(3));
+[a,e,i] = determineorbit(r,v);
+
+e = norm(e);
+p = a*(1-e^2);
+
+plotorbit(p,e,i);
