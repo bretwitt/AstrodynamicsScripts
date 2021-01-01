@@ -1,8 +1,5 @@
 function orbitellipse(p, e, i, color) 
 % p,e,i are all scalars
-
-    axis equal
-    hold on;
     sphere(30);
     
     i = deg2rad(i);
@@ -20,6 +17,8 @@ function orbitellipse(p, e, i, color)
     x = inclinedOrbit(1,:);
     y = inclinedOrbit(2,:);
     z = inclinedOrbit(3,:);
+    
+
     
     %% Plot
     plot = plot3(x,y,z);
