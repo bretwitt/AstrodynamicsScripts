@@ -1,6 +1,5 @@
-function orbitellipse(p, e, i, color) 
+function orbitellipse(p, e, i, raan, color) 
 % p,e,i are all scalars
-    sphere(30);
     
     i = deg2rad(i);
     
@@ -19,10 +18,17 @@ function orbitellipse(p, e, i, color)
     z = inclinedOrbit(3,:);
     
 
+    %% Rotate Orbit around Z axis to match RAAN
+    
+    rotAboutZ = [ cosd(raan) sind(raan) 0 ; -sind(raan) cosd(raan) 0; 0 0 1 ] * [x; y; z;];
+    
+    x = rotAboutZ(1,:);
+    y = rotAboutZ(2,:);
+    z = rotAboutZ(3,:);
+    
     
     %% Plot
-    plot = plot3(x,y,z);
-    
-    set(plot,"Color",color, "LineWidth", 2);
+    plot = plot3(x * 6378.136,y * 6378.136,z * 6378.136);
+    set(plot,"Color",color, "LineWidth", 1);
 
 end

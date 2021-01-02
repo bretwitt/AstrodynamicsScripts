@@ -1,8 +1,6 @@
-function [] = plotorbit(p, e, i, color)
+function [] = plotorbit(p, e, i, raan, color)
 %PLOTORBIT Summary of this function goes here
 %   Detailed explanation goes here
-    orbitellipse(p, e, i, color);
-    hold on
-    axis equal
+    orbitellipse(p, e, i, raan, color);
 end
 

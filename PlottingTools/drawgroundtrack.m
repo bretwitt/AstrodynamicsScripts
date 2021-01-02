@@ -1,41 +1,43 @@
-function drawgroundtrack(p, a, e, i, raan) 
+function drawgroundtrack(p, e, i, raan, tae, orbits) 
     hold on
+    theta = linspace(0,700, 100);
     
-    %% Solve Orbit    
-    long = linspace(0,360, 100);
+    %% Earth's Rotation
+    a = p / (1-norm(e)^2);
+    T = 360 * sqrt(a^3) * 13.4468 / 60 / 60;
+    deltaN = T * 15;
+    factor = (360 - deltaN) / 360;
+    theta = theta .* factor;
+
+    %% Solve Orbit Lats   
+
+    [lat,long] = coordinatesorbit(theta,p,norm(e),i,raan, 100);
     
-    r = p ./ (1+norm(e)*cosd(long));
-    x = r.*cosd(long);
-    y = r.*sind(long);
-    z = zeros(1,100);
+    %% Solve future orbits
+    for n=1:orbits
+        [latfuture(n,:),longfuture(n,:)] = coordinatesorbit(theta, p, norm(e), i, raan -(deltaN*n), 100);
+    end
     
-    %% Rotate Orbit around Y axis I deg
-    inclinedOrbit = [cosd(i) 0 -sind(i); 0 1 0; sind(i) 0 cosd(i)] * [x;y;z];
-    
-    x = inclinedOrbit(1,:);
-    y = inclinedOrbit(2,:);
-    z = inclinedOrbit(3,:);
-    
-    %% Convert to km
-    x = x .* 6378.136;
-    y = y .* 6378.136;
-    z = z .* 6378.136;
-    
-    %% Find Geodetic Lattitude and Longitude (w/ WGS84 Ellipsoid)
-    [lat,long] = ecef2geodetic(wgs84Ellipsoid('kilometer'), x,y,z);
-    
-    long = long + raan;
-    
+    %% Solve TAE Lat
+    [taelat, taelong] = coordinatesorbit(tae, p, norm(e), i, raan, 1);
     
     %% Plot
     map = worldmap('World');
     setm(map, 'MapProjection','eqdcylin');
-    p = findobj(map,'type','patch'); % Find background
+    setm(map, 'MlabelParallel', 'south');
+    p = findobj(map,'type','patch');
     set(p, 'FaceColor',  [0.8 0.8 0.8]);
-    mlabel('off');
+    mlabel('on');
+    
     geoshow('landareas.shp', 'FaceColor', 'white');
-    geoshow(lat,long, 'Color','blue','LineWidth',2);   
-
+    geoshow(lat,long, 'Color','blue','LineWidth',1);
+    
+    for n=1:orbits
+        geoshow(latfuture(n,:),longfuture(n,:), 'Color','yellow','LineWidth',0.7);
+    end
+    %% Annotate Important Elements
+    textm(taelat,taelong,'\leftarrow SAT','Color','red')
+    
     hold on
 
 

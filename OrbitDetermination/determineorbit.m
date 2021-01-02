@@ -23,14 +23,14 @@ i = acosd(h(3) ./ norm(h));
 
 % Right Ascension of Ascending Node
 raan = norm(acosd(n(1) / norm(n)));
-if n(2) < 0                         % This (and others) might be in error, will have to mathematically verify
-    raan = raan * 2;
+if n(2) < 0                         
+    raan = 360 - raan;
 end
 
 % Argument of Periapsis/Perigee
 aop = norm(acosd((dot(n,e)) / (norm(n)*norm(e))));
 if e(3) < 0
-    raan = raan * 2;
+    raan = 360 - raan;
 end
 
 % True Anomaly at Epoch 
