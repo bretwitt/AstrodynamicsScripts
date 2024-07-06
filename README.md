@@ -1,4 +1,4 @@
-This is a very old project I worked on during break the freshman year of my undergrad but I'm adding a README for anyone that crosses it! :) 
+This is a very old project I worked on during winter break the freshman year of my undergrad (I was quarantined due to COVID restrictions entering Korea) but I'm adding a README for anyone that crosses it! :) 
 
 These are some helper astrodynamics/orbital mechanics scripts in Matlab based off the book "Fundamentals for Astrodynamics"
 
